@@ -3,6 +3,9 @@ from swyftx import SwyftxApi
 import logging
 import argparse
 import time
+from version_query import predict_version_str
+
+__version__ = predict_version_str()
 
 seconds_per_unit = {"m": 60, "h": 3600}
 def convert_to_seconds(s):
@@ -40,7 +43,8 @@ if __name__ == '__main__':
 
   numeric_level = getattr(logging, args.log_level.upper(), None)
   logging.basicConfig(level=numeric_level)
-  logging.info("Exporter starting..")
+  logging.info("Swyftx exporter " + __version__)
+  logging.info("Retrieving initial metrics..")
 
   rate_in_seconds = convert_to_seconds(args.rate)
 
@@ -48,12 +52,14 @@ if __name__ == '__main__':
   # Populate initial metrics
   populate_metrics()
 
+  logging.info("Starting server...")
   start_http_server(args.port)
 
   sleep_time = rate_in_seconds
   while True:
     time.sleep(sleep_time)
     time_before_populate = time.time()
+    logging.info("Refreshing metrics...")
     populate_metrics()
     time_after_populate = time.time()
 

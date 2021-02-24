@@ -1,6 +1,7 @@
 FROM python:3.9.2-alpine3.13
-RUN pip install prometheus_client
+RUN apk update && apk add git
 RUN mkdir -p /app
-WORKDIR /app
-COPY ./src/*.py /app/
+COPY ./ /app/
+RUN pip install -r /app/requirements.txt
+WORKDIR /app/src/
 ENTRYPOINT ["python3", "exporter.py"]
