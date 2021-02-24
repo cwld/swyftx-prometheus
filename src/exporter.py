@@ -12,24 +12,26 @@ def convert_to_seconds(s):
     return int(s[:-1]) * seconds_per_unit[s[-1]]
 
 swyftx_api = None
-metrics = {'swyftx_api_errors': 0}
+metrics = {}
+error_metric = Gauge("swyftx_api_errors", "Errors from API calls to swyftx")
 
 def populate_metrics():
-  def form_name(code, item_type):
-    return "swyftx_" + swyftx_api.get_side() + "_" + code + "_" + item_type + "_" + swyftx_api.get_base_asset() + "_" + swyftx_api.get_resolution()
+  def form_name(item_type):
+    return "swyftx_" + item_type + "_" + swyftx_api.get_resolution()
 
   if swyftx_api is None:
     return
 
   latest_bars=swyftx_api.get_latest_bars()
+  error_metric.set(swyftx_api.get_error_count())
 
   for code, data in latest_bars.items():
     for item_type in ['open','close','low','high','volume']:
-      metric_name = form_name(code, item_type)
+      metric_name = form_name(item_type)
       if not metric_name in metrics:
-        metrics[metric_name] = Gauge(metric_name, "")
+        metrics[metric_name] = Gauge(metric_name, "", ["coin", "side", "base"])
 
-      metrics[metric_name].set(data[item_type])
+      metrics[metric_name].labels(code, swyftx_api.get_side(), swyftx_api.get_base_asset()).set(data[item_type])
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()

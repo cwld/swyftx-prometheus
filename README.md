@@ -6,9 +6,9 @@ See https://docs.swyftx.com.au/#/reference/charts/latest-bars/get-latest-bars fo
 
 ## Metric format
 
-Metrics are guages and are named as follows:
-```"swyftx_" + <side> + "_" + <coin code> + "_" + <metric type> + "_" + <base asset> + "_" + <resolution>```
-eg, *swyftx_ask_BTC_open_AUD_1m*
+Metrics are guages and are named and have labels as follows:
+```"swyftx_<metric_type>_<resolution>{base="<base asset>",coin="<coin code>",side="<side>"}```
+eg, *swyftx_open_1m{base="AUD",coin="AMB",side="ask"} 0.053803080708461334*
 
 Additionally there is a *swyftx_api_errors* metric for reporting errors for calls to the api.
 
