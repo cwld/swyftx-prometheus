@@ -19,14 +19,14 @@ usage: exporter.py [-h] [--rate RATE] [--resolution RESOLUTION] [--side SIDE] [-
 
 optional arguments:
   -h, --help            show this help message and exit
-  --rate RATE           The api refresh rate time in minutes or hours, eg 10m, 1h
+  --rate RATE           The api refresh rate time in minutes or hours, eg 10m, 1h. Default 1h
   --resolution RESOLUTION
-                        The resolution for the candlestick data. Value values are 1m,5m,1h,4h,1d
-  --side SIDE           Either bid or ask pricing
-  --base BASE           Base currency code, eg AUD, USD, BTC
-  --port PORT           Port to run the server on
+                        The resolution for the candlestick data. Value values are 1m,5m,1h,4h,1d. Default 1h
+  --side SIDE           Either bid or ask pricing. Default bid
+  --base BASE           Base currency code, eg AUD, USD, BTC. Default USD
+  --port PORT           Port to run the server on. Default 8080
   --log-level LOG_LEVEL
-                        The log level for python logging
+                        The log level for python logging. Default info
 ```
 
 ## Known issues

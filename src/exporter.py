@@ -35,12 +35,12 @@ def populate_metrics():
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
-  parser.add_argument("--rate", help="The api refresh rate time in minutes or hours, eg 10m, 1h", default="1h")
-  parser.add_argument("--resolution", help="The resolution for the candlestick data. Value values are 1m,5m,1h,4h,1d", default="1h")
-  parser.add_argument("--side", help="Either bid or ask pricing", default="bid")
-  parser.add_argument("--base", help="Base currency code, eg AUD, USD, BTC", default="USD")
-  parser.add_argument("--port", help="Port to run the server on", default=8080, type=int)
-  parser.add_argument("--log-level", help="The log level for python logging", default="info")
+  parser.add_argument("--rate", help="The api refresh rate time in minutes or hours, eg 10m, 1h. Default 1h", default="1h")
+  parser.add_argument("--resolution", help="The resolution for the candlestick data. Value values are 1m,5m,1h,4h,1d. Default 1h", default="1h")
+  parser.add_argument("--side", help="Either bid or ask pricing. Default bid", default="bid")
+  parser.add_argument("--base", help="Base currency code, eg AUD, USD, BTC. Default USD", default="USD")
+  parser.add_argument("--port", help="Port to run the server on. Default 8080", default=8080, type=int)
+  parser.add_argument("--log-level", help="The log level for python logging. Default info", default="info")
   args = parser.parse_args()
 
   numeric_level = getattr(logging, args.log_level.upper(), None)
