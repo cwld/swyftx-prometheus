@@ -9,7 +9,9 @@ See https://docs.swyftx.com.au/#/reference/charts/latest-bars/get-latest-bars fo
 ## Metric format
 
 Metrics are guages and are named and have labels as follows:
-```"swyftx_<metric_type>_<resolution>{base="<base asset>",coin="<coin code>",side="<side>"}```
+
+```swyftx_<metric_type>_<resolution>{base="<base asset>",coin="<coin code>",side="<side>"}```
+
 eg, *swyftx_open_1m{base="AUD",coin="AMB",side="ask"} 0.053803080708461334*
 
 Additionally there is a *swyftx_api_errors* metric for reporting errors for calls to the api.
