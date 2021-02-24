@@ -1,4 +1,6 @@
 # swyftx-prometheus
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/clml/swyftx-prometheus-exporter)
+
 Prometheus exporter for swyftx candlesticks.
 Exports latest candlestick data for all cryptocurrencies, and does not require an API key.
 
@@ -28,6 +30,10 @@ optional arguments:
   --log-level LOG_LEVEL
                         The log level for python logging. Default info
 ```
+
+## Dockerhub
+
+https://hub.docker.com/r/clml/swyftx-prometheus-exporter
 
 ## Known issues
 
